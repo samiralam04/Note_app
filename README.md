@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Note App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern full-stack note-taking application with OTP and Google authentication, built with React, Express, and PostgreSQL.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- User authentication via email OTP or Google login
+- Secure JWT-based session management
+- Create, edit, and delete personal notes
+- Responsive, modern UI with React and Framer Motion
+- PostgreSQL database with automatic table creation
+- Email delivery via Gmail (for OTP)
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend:** React, React Router, Framer Motion, React Icons
+- **Backend:** Express, Node.js, PostgreSQL, JWT, Nodemailer
+- **Authentication:** Email OTP, Google OAuth
+- **Other:** Axios, dotenv, CORS, Helmet
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (v16+ recommended)
+- PostgreSQL database
+- Gmail account for sending OTP emails
 
-### `npm run build`
+### Environment Variables
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Create a `.env` file in the root directory with the following:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+PORT=5000
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=your_db_name
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+JWT_SECRET=your_jwt_secret
+EMAIL_USER=your_gmail_address
+EMAIL_PASS=your_gmail_app_password
+GOOGLE_CLIENT_ID=your_google_client_id
+REACT_APP_GOOGLE_CLIENT_ID=your_google_client_id
+```
 
-### `npm run eject`
+> **Note:** For Gmail, you may need to create an [App Password](https://support.google.com/accounts/answer/185833?hl=en) if 2FA is enabled.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Install dependencies:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```sh
+   npm install
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **Start the backend server:**
 
-## Learn More
+   ```sh
+   node src/Backend/server.js
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. **Start the React frontend:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```sh
+   npm start
+   ```
 
-### Code Splitting
+   The app will be available at [http://localhost:3000](http://localhost:3000).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Project Structure
 
-### Analyzing the Bundle Size
+```
+note-app/
+  ├── src/
+  │   ├── Backend/         # Express backend and database logic
+  │   ├── components/      # React components (Dashboard, Login)
+  │   ├── utils/           # Utility functions (token management)
+  │   ├── App.js           # Main React app
+  │   └── index.js         # React entry point
+  ├── public/              # Static files and index.html
+  ├── .env                 # Environment variables (not committed)
+  ├── package.json         # Project dependencies and scripts
+  └── README.md            # This file
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Usage
 
-### Making a Progressive Web App
+- Register/login with your email (OTP will be sent) or Google account.
+- Create, edit, and delete your notes securely.
+- All notes are private to your account.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Scripts
 
-### Advanced Configuration
+- `npm start` — Start the React development server
+- `npm run build` — Build the React app for production
+- `node src/Backend/server.js` — Start the backend server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## License
 
-### Deployment
+MIT
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Made with ❤️
