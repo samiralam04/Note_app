@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
-import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import axios from 'axios';
 
@@ -26,12 +25,6 @@ function App() {
     localStorage.setItem('token', userData.token); // Save token
   };
 
-  const handleRegister = (userData) => {
-    setUser(userData);
-    setIsAuthenticated(true);
-    localStorage.setItem('token', userData.token); // Save token
-  };
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     setUser(null);
@@ -46,12 +39,6 @@ function App() {
             path="/"
             element={
               isAuthenticated ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              isAuthenticated ? <Navigate to="/dashboard" /> : <Register onRegister={handleRegister} />
             }
           />
           <Route

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {
-  FaEnvelope, FaLock, FaGoogle, FaArrowRight, FaCheck, FaUserPlus
+  FaEnvelope, FaLock, FaGoogle, FaArrowRight, FaCheck, 
 } from 'react-icons/fa';
 import { useGoogleLogin } from '@react-oauth/google';
-import { setTokenCookie, getTokenFromCookie } from '../utils/tokenUtils'; // Adjust the import path as needed
+import { setTokenCookie,  } from '../utils/tokenUtils'; 
 
-const Login = ({ onLogin, onSwitchToRegister }) => {
+const Login = ({ onLogin, }) => {
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [step, setStep] = useState('email');
@@ -46,19 +46,19 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
   try {
     const res = await axios.post('/api/auth/verify-otp', { email, otp });
 
-    console.log('Full response from server:', res.data); // 🐞 Debug log
+    console.log('Full response from server:', res.data); //  Debug log
 
     const token = res.data.token;
 
     if (token) {
       setTokenCookie(token);
 
-      onLogin(res.data.user); // 👈 Callback to parent component
+      onLogin(res.data.user); // Callback to parent component
     } else {
       setError('No token received from server');
     }
   } catch (err) {
-    console.error('OTP verify error:', err); // 🔴 Log the error
+    console.error('OTP verify error:', err); // Log the error
     setError(err.response?.data?.message || 'Invalid or expired OTP');
   } finally {
     setLoading(false);
@@ -195,12 +195,7 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
           </>
         )}
 
-        <div className="auth-footer">
-          <p>Don't have an account?</p>
-          <button className="register-link" onClick={onSwitchToRegister} disabled={loading}>
-            <FaUserPlus className="register-icon" /> Create account
-          </button>
-        </div>
+        
       </div>
     </div>
   );
@@ -404,30 +399,6 @@ const styles = `
     border-top: 1px solid #edf2f7;
     color: #718096;
     font-size: 14px;
-  }
-
-  .register-link {
-    background: none;
-    border: none;
-    display: flex;
-    align-items: center;
-    margin-top: 8px;
-    color: #4f46e5;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    padding: 5px;
-    font-size: 14px;
-  }
-
-  .register-link:hover {
-    color: #4338ca;
-    transform: translateX(2px);
-  }
-
-  .register-icon {
-    margin-right: 6px;
-    font-size: 10px;
   }
 
   @media (max-width: 480px) {

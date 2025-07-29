@@ -95,16 +95,13 @@ const googleAuth = async (req, res) => {
 };
 
 // placeholder
-const registerUser = (req, res) => {
-    res.status(501).json({ message: "Not implemented yet" });
-};
+
 
 const loginUser = (req, res) => {
     res.status(501).json({ message: "Not implemented yet" });
 };
 
 module.exports = {
-    registerUser,
     requestOtp,
     verifyOtp,
     loginUser,
