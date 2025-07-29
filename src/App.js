@@ -1,24 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/Register';
+import Dashboard from './components/Dashboard';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:5000'; // Your backend URL
+const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = (userData) => {
+    setUser(userData);
+    setIsAuthenticated(true);
+    localStorage.setItem('token', userData.token); // Save token
+  };
+
+  const handleRegister = (userData) => {
+    setUser(userData);
+    setIsAuthenticated(true);
+    localStorage.setItem('token', userData.token); // Save token
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+    setIsAuthenticated(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              isAuthenticated ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              isAuthenticated ? <Navigate to="/dashboard" /> : <Register onRegister={handleRegister} />
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              isAuthenticated ? <Dashboard user={user} onLogout={handleLogout} /> : <Navigate to="/" />
+            }
+          />
+        </Routes>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 
