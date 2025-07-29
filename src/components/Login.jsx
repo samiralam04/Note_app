@@ -4,6 +4,7 @@ import {
   FaEnvelope, FaLock, FaGoogle, FaArrowRight, FaCheck, FaUserPlus
 } from 'react-icons/fa';
 import { useGoogleLogin } from '@react-oauth/google';
+import { setTokenCookie, getTokenFromCookie } from '../utils/tokenUtils'; // Adjust the import path as needed
 
 const Login = ({ onLogin, onSwitchToRegister }) => {
   const [email, setEmail] = useState('');
@@ -50,8 +51,7 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
     const token = res.data.token;
 
     if (token) {
-      localStorage.setItem('token', token);
-      console.log('Token stored:', token); // ✅ Confirmation log
+      setTokenCookie(token);
 
       onLogin(res.data.user); // 👈 Callback to parent component
     } else {
@@ -88,8 +88,7 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
         // ✅ Save the token
         const token = res.data.token;
         if (token) {
-          localStorage.setItem('token', token);
-          console.log('Token stored (Google):', token);
+          setTokenCookie(token);
           onLogin(res.data.user);
         } else {
           setError('No token received from Google login');
