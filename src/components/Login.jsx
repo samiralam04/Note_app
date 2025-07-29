@@ -23,7 +23,7 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
 
     setLoading(true);
     try {
-      await axios.post('/api/auth/send-otp', { email });
+      await axios.post('/api/auth/request-otp', { email });
       setStep('otp'); // Move to OTP step
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to send OTP');
@@ -107,7 +107,7 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
     setError('');
     setLoading(true);
     try {
-      await axios.post('/api/auth/send-otp', { email });
+      await axios.post('/api/auth/request-otp', { email });
       setError('OTP has been re-sent.');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to resend OTP');
