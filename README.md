@@ -103,4 +103,4 @@ MIT
 
 ---
 
-**Made with ❤️
+Made by Samir Alam
