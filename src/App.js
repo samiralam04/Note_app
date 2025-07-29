@@ -5,7 +5,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:5000'; // Your backend URL
+axios.defaults.baseURL = 'http://localhost:5000'; // backend URL
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function App() {

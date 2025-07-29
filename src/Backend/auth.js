@@ -1,4 +1,3 @@
-// src/Backend/auth.js
 const Token = require('./Token');
 const User = require('./User');
 

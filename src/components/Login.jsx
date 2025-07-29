@@ -66,7 +66,7 @@ const Login = ({ onLogin, }) => {
 };
 
 
-  // ✅ Google Login
+  // Google Login
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
@@ -85,7 +85,7 @@ const Login = ({ onLogin, }) => {
           picture: userInfo.data.picture,
         });
 
-        // ✅ Save the token
+        //  Save the token
         const token = res.data.token;
         if (token) {
           setTokenCookie(token);

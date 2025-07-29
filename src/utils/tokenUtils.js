@@ -1,5 +1,3 @@
-// utils/tokenUtils.js
-
 /**
  * Set a JWT token into a cookie
  * @param {string} token - JWT token

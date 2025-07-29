@@ -6,7 +6,7 @@ const {
     verifyOtp,
     loginUser,
     googleAuth,
-} = require('../authController'); // <- using named handlers
+} = require('../authController'); 
 
 
 router.post('/request-otp', requestOtp);
